@@ -32,9 +32,26 @@ let deleteBook = (req, res) => {
     })
 }
 
+let updateBook = (req , res)=>{
+    let id = req.params.id;
+    let query = "update  book  set  `title` = ? , `description`= ? , `price`= ? , `cover` = ? where id = ?" ;
+    const values = [
+        req.body.title,
+        req.body.description,
+        req.body.price,
+        req.body.connection
+    ]
+    
+    connection.query(query, [...values , id], (error, result) => {
+        if (error) return res.json(error);
+        console.log(result)
+        return res.json(result);
+    })
+}
 
 module.exports = {
     getAllBook,
     saveAllBook,
-    deleteBook
+    deleteBook,
+    updateBook
 }
