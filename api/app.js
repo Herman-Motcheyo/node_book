@@ -1,5 +1,5 @@
 const express  = require('express');
-let {getAllBook , saveAllBook} = require("./controller/Book")
+let {getAllBook , saveAllBook , deleteBook} = require("./controller/Book")
 const app = new express();
 app.use(express.json())
 
@@ -8,6 +8,9 @@ app.get("/books" , getAllBook);
 
 //permet d inserer des livres
 app.post("/books" , saveAllBook);
+
+//permet de supprimer un livre
+app.delete("/books/:id" , deleteBook) ;
 
 app.get("/" , (req ,res)=>{
     res.send("ok ca roule tres bien")
