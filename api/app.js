@@ -1,8 +1,14 @@
 const express  = require('express');
-let {getAllBook} = require("./controller/Book")
+let {getAllBook , saveAllBook} = require("./controller/Book")
 const app = new express();
+app.use(express.json())
 
-app.get("/book" , getAllBook);
+//permet de recuperer tous les livres
+app.get("/books" , getAllBook);
+
+//permet d inserer des livres
+app.post("/books" , saveAllBook);
+
 app.get("/" , (req ,res)=>{
     res.send("ok ca roule tres bien")
 });

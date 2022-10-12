@@ -8,5 +8,20 @@ let getAllBook = (req , res)=>{
     })
 }
 
+let  saveAllBook =(req , res)=>{
+    const query = " insert into book (`title` ,`price`, `description` ,`cover`) values(?)" ;
+    const values = [
+        req.body.title,
+        req.body.price,
+        req.body.description,
+        req.body.cover
+    ]
 
-module.exports = {getAllBook}
+    connection.query(query ,[values] ,(error , result)=>{
+        if(error) return res.json(error);
+        return res.json(result);
+    })
+}
+
+
+module.exports = {getAllBook , saveAllBook}
